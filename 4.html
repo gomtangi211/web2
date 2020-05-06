@@ -1,0 +1,54 @@
+﻿<html>
+
+<head>
+<style>
+ body{
+  font-family: "Malgun Gothic";font-size:13px; 
+ }
+</style>
+</head>
+<body >
+
+<h1><a href="http://jeonghwan-kim.github.io/series/2018/12/01/node-web-0_index.html">Node.js 강좌</a></h1>
+<h1><a href='http://happinessoncode.com/2018/05/20/nodejs-exports-and-module-exports/'>exports, module.exports 차이점</a></h1>
+<h1><a href='http://jeonghwan-kim.github.io/passport-google-oauth-구글-인증-모듈/'>구글 패스포트 인증</a></h1>
+<p>설치 모듈 : passport, passport-google-oauth</p>
+<p>jquery 설치   npm install jquery  </p>
+<p>머터리얼 디자인 설치  npm install  material-design-lite</p>
+
+<pre>
+        <!-- Material design icon-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <link rel="stylesheet" href="/mdlite/material.indigo-pink.min.css">
+        
+        <script src="/mdlite/material.min.js"></script>
+       //네비게이트 메뉴 
+       <div class="mdl-layout--fixed-header mdl-js-layout">
+        <header class="mdl-layout__header mdl-layout__header--waterfall">
+        <div class="mdl-layout__header-row">
+            <!-- Navigation -->
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="/">홈</a>
+                <a class="mdl-navigation__link" href="/search">SEARCH</a>
+                <a class="mdl-navigation__link" href="/album">앨범</a>
+            </nav>
+        </div>
+        </header>
+        </div>
+ </pre>
+
+ <h1>구글 아이콘 사용법</h1>
+ <pre> 
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+     app.use('/icon', 
+     express.static(__dirname+ '/node_modules/material-design-icons/iconfont')) 
+
+     <link rel="stylesheet" href="/icon/material-icons.css">
+
+     <i class="material-icons"> check_circle </i>
+
+</pre>
+</body>
+</html>

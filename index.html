@@ -2,33 +2,104 @@
 <html>
 <head>
 	<title> Web 공부</title>
-	<meta charset="utf-8">
+  <meta charset="utf-8">
+  <!--
+    <link rel="stylesheet" href="css/topnav.css">
+    <link rel="stylesheet" href="css/navbar.css">
+  -->
+  <link rel="stylesheet" href="css/magamenu.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    body{
+      margin: 0px;
+      padding: 0px;
+      background-image: url('pat.gif');
+      
+    }
+    .jb-font-1 {
+      font-family:  c;
+    }
+    .backimg{
+      background-image: url('photo-1551776902-c9c4eb97f489.jpg');
+   
+    }
+    </style>
+    <script>
+    function myFunction(x) {
+      x.classList.toggle("change");
+      
+    } 
+   
+    </script>
 </head>
 <body  >
-<div>
-<div style="border: 1px solid gold; float: left; width: 33%;">
-<h1>Web 공부</h1>
+  <!--
+
+    <header include-html="/static/html/header.html"></header>
+  -->   
+  <div class="navbar">
+      <a class ='active' href="index.html"  >Home</a>
+      <a href="record.html">기록</a>
+      <div class="dropdown">
+        <button  class="dropbtn" onclick="myFunction(this)" >카테고리 
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <!--
+
+            <div class="header">
+              <h2>Mega Menu</h2>
+            </div> 
+          -->
+          <div class="row">
+            <div class="column">
+              <h3>Category 1</h3>
+              <a href="#">Link 1</a>
+              <a href="#">Link 2</a>
+              <a href="#">Link 3</a>
+            </div>
+            <div class="column">
+              <h3>Category 2</h3>
+              <a href="#">Link 1</a>
+              <a href="#">Link 2</a>
+              <a href="#">Link 3</a>
+            </div>
+            <div class="column">
+              <h3>Category 3</h3>
+              <a href="#">Link 1</a>
+              <a href="#">Link 2</a>
+              <a href="#">Link 3</a>
+            </div>
+          </div>
+        </div>
+      </div> 
+    </div>
+
+
+<div  >
+<div style="border: 1px solid gold; float: left; width: 33%; background-image: url('gradient_bg.png')">
+<h3>Web 공부</h3>
 
 <ol>
   <li><a href="1.html">HTML</a></li>
-  <li>CSS</li>
-  <li>JavaScript</li>
-  <li>Node.js</li>
+  <li><a href="2.html">CSS</a></li>
+  <li><a href="3.html">JavaScript</a></li>
+  <li><a href="4.html">Node.js</a></li>
 </ol>
 </div>
 
 <div style="border: 1px solid red; float: left; width: 33%;">
-<h1>기타 공부</h1>
+<h3>기타 공부</h3>
 
 <ol>
   <li><a href="a1.html">visual code 편집기</a></li>
   <li><a href="a2.html">CSS</a></li>
   <li>JavaScript</li>
-  <li>Node.js</li>
+  <li><a href="a4.html">Node.js</li>
 </ol>
 </div>
 </div>
-<img src='photo-1551776902-c9c4eb97f489.jpg'>
+
 
 </body>
 </html>

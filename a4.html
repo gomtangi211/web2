@@ -1,0 +1,171 @@
+﻿<html>
+
+<head>
+    <style> 
+    p {
+        font-family: "Malgun Gothic";font-size:13px; 
+        }
+    a {
+        padding-left: 10px;
+    }
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+      <h2>npm은 JavaScript용 패키지 관리자</h2>
+      <p>npm을 사용하면 다른 개발자와 공유한 코드를 쉽게 재새용 가능</p>
+      <p>npm install은 지정된 패키지를 기본적으로 의존성에 저장합니다. 또한 몇가지 추가 옵션을 사용하여 저장 위치 및 방법 제어</p>
+      <p>./node_modules 디렉토리에 패키지를 설치합니다</p>
+      <p> npm install (plugin) --save      패키지(plugin)를  ./node_moduels 디렉토리에 설치하고 ./package.json파일의 dependencies항목에 플러그인 추가</p>
+     
+      <p>npm install [모듈명] -g :  g는 global 설치</p>
+      <p>npm install [모듈명] --save : --save는 현재 폴더에 package.json에 집어넣어라</p>
+      <p>npm install만 치면  package.json에 있는 모듈들을 설치</p>
+      <h2><i class="fa fa-arrow-right"></i>express 템플릿 생성</h2>
+
+     <p>c:\ express --ejs  photo</p>
+     <p>photo라는 서브 디렉토리가 만들어지고  ejs 템플릿 소스코드가 자동 생성됨</p>
+
+     <h2><i class="fa fa-angle-right"></i>패키지 설치</h2>
+      
+    <p>npm install만 입력하면 package.js에 정의된 모듈들을 자동으로 설치한다</p>          
+    <p>bin 디렉토리에 www파일이 생기는에 이 파일을 node로 실행가능 ( node bin/www  또는 npm start) </p>         
+
+    <h2>비어 있는 디렉토리에서 시작하기</h2>
+    <p>$npm init</p> 
+
+    <h2> http server 만들기</h2>
+    <pre>
+    var http = require("http");
+    function onRequest(req, res) {
+    res.end('Hello world');
+    }
+    http.createServer(onRequest).listen(80);
+
+    두번째 매개변수를 callback 함수로
+    http.createServer( function(req,res) {
+    }).listen(80);
+        
+    세번째  익명 함수 표현
+    http.createServer( (req,res)=> {
+    }).listen(80);
+      
+    var http= require('http');
+
+    http.createServer((req, res)=>{
+
+    res.end('Hello world2 '+  req.url +" : " );
+
+    console.log(pathname);
+    }).listen(80);
+    </pre>
+    <h2>express를 사용하여  http server 만들기</h2>
+    <pre><code>
+    var express = require('express');
+
+    var app = express();
+    
+    var server = app.listen(80, function(req,res){
+        console.log('web port 80');
+    });
+    
+    app.get('/', function(req, res){
+        res.send('Hello world');
+    });
+    </code>
+    </pre>
+    
+    <h2>모듈로  나눠서 만들기</h2>
+    <pre>
+    <string>server.js</string>
+    var express = require('express');
+
+    var app = express();
+    var router = require('./router/main')(app);
+
+    app.set('views', __dirname+'/views');
+    app.set('view engine', 'ejs');
+    app.engine('html', require('ejs').renderFile);
+
+    var server = app.listen(80, (req,res)=> {
+        console.log('80 port ');
+    });
+
+    app.use( express.static('public'));
+
+    <string>main.js</string>
+    module.exports = function(app)
+    {
+        app.get('/', (req,res)=>{
+            res.render('index.html');
+        });
+        app.get('/about', (req,res)=>{
+            res.render('about.html');
+        });
+    }
+
+    <b>views/index.html</b>
+    &lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Main&lt;/title&gt;
+        &lt;link rel="stylesheet" type="text/css" href="css/style.css"&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        Hey, this is index page
+    &lt;/body&gt;
+    &lt;/html&gt;
+
+    <b>views/about.html</b>
+    &lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;About&lt;/title&gt;
+        &lt;link rel="stylesheet" type="text/css" href="css/style.css"&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        About... what?
+    &lt;/body&gt;
+    &lt;/html&gt;
+    </pre>
+    
+    <h2>expree debug </h2>
+    <pre>
+    set DEBUG=express:* & node index.js
+    application쪽만 보고 싶으면 express:application으로 설정
+
+    set DEBUG=http:* & node bin/www
+    node ./bin/www에서 나오는 로그가 보통 http 로그인듯 
+    app.use(logger('dev')); 이것 빼면 http 로그가 사라짐
+
+    </pre>
+    <h2>템플릿 엔진 사용</h2>
+    <pre>
+    // view engine setup  ejs 엔진 사용 
+    app.set('views', path.join(__dirname, 'views'));
+    app.set('view engine', 'ejs');
+
+    </pre>
+    <h2>미들웨어 등록</h2>
+    <pre>
+    app.use(logger('dev'));
+    app.use(express.json());
+    app.use(express.urlencoded({ extended: false }));
+    app.use(cookieParser());
+    app.use(express.static(path.join(__dirname, 'public')));
+  
+    app.use(express.json()); // for parsing application/json
+    app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded      
+    </pre>
+    <h2> 라우터 코드는  bodypaser 밑에 등록하자</h2>
+    <pre>
+      // Parse application/json request data.
+      app.use(bodyParser.json());
+      
+      // Parse application/xwww-form-urlencoded request data.
+      app.use(bodyParser.urlencoded({extended: true}));
+
+      var router = require('./router/main')(app,passport,config);
+
+    </pre>
+</body>
+</html>
